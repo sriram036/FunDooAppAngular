@@ -1,0 +1,34 @@
+.login{
+    margin-top: 35px;
+    padding: 20px;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+    width: 30%;
+    height: 65%;
+    background-color: #f0f0f0;
+    border: 1px solid #e5e5e5;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+.login-container{
+    margin: 15px;
+    width: 98%;
+    height: 90%;
+    background-color: burlywood;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+}
+.LoginButton{
+    border: 1px solid #0cdcf7;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ButtonDiv{
+    display: flex;
+    justify-content: space-around;
+}

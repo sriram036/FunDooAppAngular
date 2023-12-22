@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="Register-container">
+        <form class="Register" (ngSubmit)="onSubmit(Register)" #Register="ngForm">
+            <h1 style="background-color: darksalmon;border-radius: 5px;"><span
+                    style="color: darkgoldenrod;">Fun</span><span style="color: dodgerblue;">Doo</span><span
+                    style="color: forestgreen;">App</span></h1>
+            <hr>
+            <h2 style="color: forestgreen;font-size: x-large;">Register</h2>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>First Name</mat-label>
+                    <input name="FName" required autocomplete="off" ngModel matInput placeholder="First Name">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Last Name</mat-label>
+                    <input name="LName" required autocomplete="off" ngModel matInput placeholder="Last Name">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input name="Email" required autocomplete="off" ngModel matInput placeholder="Email">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input name="Password" required type="password" ngModel matInput placeholder="Password">
+                </mat-form-field>
+            </p>
+            <div class="ButtonDiv">
+                <button mat-button type="button" (click)="goToLogin()">Login</button>
+                <button type="submit" class="RegisterButton" mat-raised-button color="primary"
+                    [disabled]="!Register.valid">Register</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
