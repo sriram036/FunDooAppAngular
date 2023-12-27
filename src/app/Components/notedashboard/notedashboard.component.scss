@@ -1,0 +1,34 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+::ng-deep .mat-form-field-underline {
+    display: none;
+}
+
+.searchBar {
+    background-color: #f1f1f1;
+    border-radius: 9px;
+    width: 60%;
+    height: 70%;
+    left: 100px;
+    display: flexbox;
+}
+
+.example-container {
+    width: 100%;
+    height: 85%;
+    background-color: white;
+    
+}
+
+.example-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.example-sidenav {
+    padding: 20px;
+}

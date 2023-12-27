@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <mat-toolbar style="background-color: white;">
+        <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <img src="../../../assets/Images/keep_2020q4_48dp.png">
+        <span>Keep</span>
+        <mat-form-field class="searchBar" floatLabel="never">
+            <button style="top: -20px;" mat-icon-button class="example-icon favorite-icon"
+                aria-label="Example icon-button with heart icon">
+                <img src="../../../assets/Images/search_FILL0_wght400_GRAD0_opsz24.png">
+            </button>
+            <!-- <mat-placeholder style="margin-left: 40px;position: relative; top: -10px;">Search</mat-placeholder> -->
+            <input style="position: absolute;top: -3px;" matInput type="text">
+            <button style="top: -20px;" matSuffix mat-icon-button aria-label="Clear">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <img src="../../../assets/Images/refresh_FILL0_wght400_GRAD0_opsz24.png">
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <img src="../../../assets/Images/grid_view_FILL0_wght400_GRAD0_opsz24.png">
+        </button>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <img src="../../../assets/Images/settings_FILL0_wght400_GRAD0_opsz24.png">
+        </button>
+    </mat-toolbar>
+    <hr>
+    <div style="display: flex; justify-content: flex-start; height: 85%;">
+        <div>
+            <mat-drawer-container class="example-container" autosize>
+                <mat-drawer #drawer class="example-sidenav" mode="side">
+                    <div style="display: flex; align-items: baseline;">
+                        <button style="background-color: white; border: none;">
+                            <img src="../../../assets/Images/lightbulb_FILL0_wght400_GRAD0_opsz24.png">
+                        </button>
+                        <p>Notes</p><br />
+                    </div>
+                    <div style="display: flex; align-items: baseline;">
+                        <button style="background-color: white; border: none;">
+                            <img src="../../../assets/Images/notifications_FILL0_wght400_GRAD0_opsz24.png">
+                        </button>
+                        <p>Reminders</p>
+                    </div>
+                    <div style="display: flex; align-items: baseline;">
+                        <button style="background-color: white; border: none;">
+                            <img src="../../../assets/Images/label_FILL0_wght400_GRAD0_opsz24.png">
+                        </button>
+                        <p>Labels</p>
+                    </div>
+                    <div style="display: flex; align-items: baseline;">
+                        <button style="background-color: white; border: none;">
+                            <img src="../../../assets/Images/edit_FILL0_wght400_GRAD0_opsz24.png">
+                        </button>
+                        <p>Edit lables</p>
+                    </div>
+                    <div style="display: flex; align-items: baseline;">
+                        <button style="background-color: white; border: none;">
+                            <img src="../../../assets/Images/archive_FILL0_wght400_GRAD0_opsz24.png">
+                        </button>
+                        <p>Archive</p>
+                    </div>
+                    <div style="display: flex; align-items: baseline;">
+                        <button style="background-color: white; border: none;">
+                            <img src="../../../assets/Images/delete_FILL0_wght400_GRAD0_opsz24.png">
+                        </button>
+                        <p>Trash</p>
+                    </div>
+                </mat-drawer>
+            </mat-drawer-container>
+        </div>
+        <div style="display: flex;justify-content: center;margin-left: 25%;padding: 25px;">
+            <div>
+                <mat-accordion>
+                    <mat-expansion-panel hideToggle style="width: 150%;box-shadow: 1px 1px 7px 6px rgba(0.1, 0, 0, 0.1);">
+                        <mat-expansion-panel-header >
+                            <mat-panel-title>
+                                <mat-form-field floatLabel="never" style="width: 100%;">
+                                    <input matInput placeholder="Title">
+                                </mat-form-field>
+                            </mat-panel-title>
+                            <mat-panel-description style="display: flex;justify-content: flex-end">
+                                <div >
+                                    <img src="../../../assets/Images/check_box_FILL0_wght400_GRAD0_opsz24.png">
+                                    <img  style="padding-left: 20px;" src="../../../assets/Images/brush_FILL0_wght400_GRAD0_opsz24.png">
+                                    <img style="padding-left: 20px;" src="../../../assets/Images/image_FILL0_wght400_GRAD0_opsz24.png">
+                                </div>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <mat-form-field floatLabel="never" style="width: 100%;">
+                            <input matInput placeholder="Take a note..">
+                        </mat-form-field>
+                        <div style="display: flex; justify-content: space-between;">
+                            <button mat-icon-button><img src="../../../assets/Images/add_alert_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-icon-button><img src="../../../assets/Images/person_add_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-icon-button><img src="../../../assets/Images/palette_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-icon-button><img src="../../../assets/Images/image_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-icon-button><img src="../../../assets/Images/archive_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-icon-button><img src="../../../assets/Images/more_vert_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-icon-button><img src="../../../assets/Images/undo_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-icon-button><img src="../../../assets/Images/redo_FILL0_wght400_GRAD0_opsz24.png"></button>
+                            <button mat-button>Close</button>
+                            <!-- <div style="display: flex;justify-content: flex-end;">
+                                <button>Basic</button>
+                            </div> -->
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

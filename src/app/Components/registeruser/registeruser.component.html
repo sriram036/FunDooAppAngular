@@ -1,51 +1,76 @@
+<app-login [childMessage]="parentMessage" (messageEvent)="receiveMessage($event)"></app-login>
+{{message}}
+<button type="button" (click)="updateMessage()">Update</button>
+{{messageService}}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-
 <body>
-    <div class="Register-container">
-        <form class="Register" (ngSubmit)="onSubmit(Register)" #Register="ngForm">
-            <h1 style="background-color: darksalmon;border-radius: 5px;"><span
-                    style="color: darkgoldenrod;">Fun</span><span style="color: dodgerblue;">Doo</span><span
-                    style="color: forestgreen;">App</span></h1>
-            <hr>
-            <h2 style="color: forestgreen;font-size: x-large;">Register</h2>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>First Name</mat-label>
-                    <input name="FName" required autocomplete="off" ngModel matInput placeholder="First Name">
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Last Name</mat-label>
-                    <input name="LName" required autocomplete="off" ngModel matInput placeholder="Last Name">
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input name="Email" required autocomplete="off" ngModel matInput placeholder="Email">
-                </mat-form-field>
-            </p>
-            <p>
-                <mat-form-field appearance="outline">
-                    <mat-label>Password</mat-label>
-                    <input name="Password" required type="password" ngModel matInput placeholder="Password">
-                </mat-form-field>
-            </p>
-            <div class="ButtonDiv">
-                <button mat-button type="button" (click)="goToLogin()">Login</button>
-                <button type="submit" class="RegisterButton" mat-raised-button color="primary"
-                    [disabled]="!Register.valid">Register</button>
+    <div class="container">
+        <form class="form" [formGroup]="addUser" (ngSubmit)="onSubmit()">
+            <div class="form-fields">
+                <div><h2 style="color: darkorange;">Fundo</h2></div>
+                <div><h3>Create your Fundo Account</h3></div>
+                <div style="display: flex; justify-content: space-between;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input required matInput formControlName="firstName" placeholder="First Name">
+                        <mat-error>First Name is <strong>Required</strong></mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Last Name</mat-label>
+                        <input required matInput formControlName="lastName" placeholder="Last Name">
+                        <mat-error>Last Name is <strong>Required</strong></mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Email</mat-label>
+                        <input required matInput formControlName="email" placeholder="Email">
+                        <mat-error>Email is <strong>Required</strong></mat-error>
+                    </mat-form-field>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Password</mat-label>
+                        <input type="password" required matInput formControlName="password" placeholder="Password">
+                        <mat-error>Password is <strong>Required</strong></mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Confirm</mat-label>
+                        <input type="password" required matInput placeholder="Confirm">
+                        <mat-error>Confirm Password is <strong>Required</strong></mat-error>
+                    </mat-form-field>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <button style="color: blue;" type="button" (click)="goToLogin()" mat-button>Sign in instead</button>
+                    <button mat-raised-button [disabled]="addUser.invalid" type="submit" color="primary">Register</button>
+                </div>
+            </div>
+            <div class="form-right">
+                <img style="width: 85%; height: 70%; display: flex; justify-content: baseline;" src="../../../assets/Images/google-one-account.jpg" />
+                <div><h3 style="text-align: center; font-size: large;">One Account. All of Fundo<br/><span>working for you</span></h3></div>
             </div>
         </form>
+        <div class="foot">
+            <div>
+                <mat-form-field>
+                    <mat-label>English (United States)</mat-label>
+                    <mat-select>
+                        <mat-option>English (United States)</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button disabled mat-button>Help</button>
+                <button disabled mat-button>Privacy</button>
+                <button disabled mat-button>Terms</button>
+            </div>
+        </div>
     </div>
 </body>
-
 </html>

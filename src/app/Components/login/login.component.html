@@ -1,3 +1,5 @@
+{{ childMessage }}
+<button (click)="sendMessage()">Send</button>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,29 +8,58 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="login-container">
-    <form class="login" (ngSubmit)="onSubmit(Login)" #Login="ngForm">
-      <h1 style="background-color: darksalmon;border-radius: 5px;"><span style="color: darkgoldenrod;">Fun</span><span style="color: dodgerblue;">Doo</span><span style="color: forestgreen;">App</span></h1>
-      <hr>
-      <h2 style="color: forestgreen;font-size: x-large;">Login</h2>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input name="Email" required autocomplete="off" ngModel matInput placeholder="Email">
+  <div class="container">
+    <div class="form">
+      <form [formGroup]="loginUser" (ngSubmit)="onSubmit()">
+        <div>
+          <h2 style="text-align: center; color: darkorange;">Fundo</h2>
+        </div>
+        <div>
+          <h3 style="text-align: center;">Sign in</h3>
+        </div>
+        <div>
+          <p style="text-align: center;">Use your Fundo Account</p>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <mat-form-field appearance="outline">
+            <mat-label>Email or Phone</mat-label>
+            <input matInput required formControlName="email" placeholder="Email or Phone">
+            <mat-error>Email is <strong>Required</strong></mat-error>
+          </mat-form-field>
+        </div>
+        <div style="text-align: center;">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput required formControlName="password" placeholder="Password">
+            <mat-error>Password is <strong>Required</strong></mat-error>
+          </mat-form-field>
+        </div>
+        <p><button style="color: blue;" (click)="goToForgotPassword()" type="button" mat-button>Forgot Password</button></p>
+        <div class="buttonContainer">
+          <div>
+            <button style="color: blue;" type="button" (click)="goToRegister()" mat-button>Create Account</button>
+          </div>
+          <div>
+            <button type="submit" [disabled]="loginUser.invalid" mat-raised-button color="primary">Login</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="foot">
+      <div>
+        <mat-form-field>
+          <mat-label>English (United States)</mat-label>
+          <mat-select>
+            <mat-option>English (United States)</mat-option>
+          </mat-select>
         </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input name="Password" required type="password" ngModel matInput placeholder="Password">
-        </mat-form-field>
-      </p>
-      <div class="ButtonDiv">
-        <button mat-button type="button" (click)="goToForgotPassword()">Forgot Password</button>
-        <button mat-button type="button" (click)="goToRegister()">Register</button>
-        <button type="submit" class="LoginButton" mat-raised-button color="primary" [disabled]="!Login.valid">Login</button>
       </div>
-    </form>
+      <div>
+        <button disabled mat-button>Help</button>
+        <button disabled mat-button>Privacy</button>
+        <button disabled mat-button>Terms</button>
+      </div>
+    </div>
   </div>
 </body>
 </html>

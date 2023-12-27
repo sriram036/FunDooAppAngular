@@ -1,6 +1,13 @@
-.example-container {
-    width: 30%;
-    height: 100%;
-    margin: 10px;
-    border: 1px solid #555;
+table {
+    width: 100%;
+}
+
+.mat-mdc-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 25%;
 }

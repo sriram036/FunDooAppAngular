@@ -10,9 +10,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ForgotpasswordComponent } from './Components/forgotpassword/forgotpassword.component';
 import { ResetPasswordComponent } from './Components/reset-password/reset-password.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisteruserComponent } from './Components/registeruser/registeruser.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
+import { NotedashboardComponent } from './Components/notedashboard/notedashboard.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -21,7 +29,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     LoginComponent,
     ForgotpasswordComponent,
     ResetPasswordComponent,
-    RegisteruserComponent
+    RegisteruserComponent,
+    NotedashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +40,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
