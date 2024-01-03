@@ -1,0 +1,35 @@
+<div style="display: flex;justify-content: center;flex-wrap: wrap;">
+    <div class="example-card" *ngFor="let note of newAddedNote">
+        <div [style.background]="note.colour" (click)="openEdit(note)" style="margin: -10px;border-radius: 10px;">
+            <div style="padding-left: 10px;">
+                <div style="display: flex;justify-content: space-between;">
+                    <h2>{{note.title}}</h2>
+                    <button mat-icon-button><img src="../../../assets/Images/push_pin_FILL0_wght400_GRAD0_opsz24.png"></button>
+                </div>
+                <p>{{note.description}}<br>{{note.colour}}</p>
+                <footer>
+                    <button mat-icon-button><img src="../../../assets/Images/add_alert_FILL0_wght400_GRAD0_opsz24.png"></button>
+                    <button mat-icon-button><img src="../../../assets/Images/person_add_FILL0_wght400_GRAD0_opsz24.png"></button>
+                    <button mat-icon-button [matMenuTriggerFor]="palette"><img
+                            src="../../../assets/Images/palette_FILL0_wght400_GRAD0_opsz24.png"></button>
+                    <mat-menu #palette="matMenu">
+                        <div style="display: flex;flex-direction: row;">
+                            <div *ngFor="let co of colors" style="display: flex;flex-direction: row;">
+                                <button (click)="changeColor(co.color, note)" mat-icon-button [style.background]="co.color"></button>
+                            </div>
+                        </div>
+                    </mat-menu>
+                    <button mat-icon-button><img src="../../../assets/Images/image_FILL0_wght400_GRAD0_opsz24.png"></button>
+                    <button (click)="archiveOrDelete(note.notesId, 1)" mat-icon-button><img
+                            src="../../../assets/Images/archive_FILL0_wght400_GRAD0_opsz24.png"></button>
+                    <button mat-icon-button [matMenuTriggerFor]="menu"><img
+                            src="../../../assets/Images/more_vert_FILL0_wght400_GRAD0_opsz24.png"></button>
+                    <mat-menu #menu="matMenu">
+                        <button (click)="archiveOrDelete(note.notesId, 2)" mat-menu-item>Delete</button>
+                        <button mat-menu-item>AddLabel</button>
+                    </mat-menu>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>

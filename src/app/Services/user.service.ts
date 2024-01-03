@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { RegisterModel } from '../Models/register-model';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,6 +11,11 @@ export class UserService {
   private message = new BehaviorSubject("Default Message from Service.");
   updatedMessage: Observable<string> = this.message.asObservable();
 
+  private token = new BehaviorSubject('');
+  newToken = this.token.asObservable()
+  changeToken(token:string){
+    this.token.next(token);
+  }
   constructor(private http : HttpClient) { }
 
   setMessage(message: string) {
@@ -35,8 +40,14 @@ export class UserService {
     return this.http.post('https://localhost:44370/api/Users/ForgotPassword?email=' + data , null);
   }
 
-  resetPassword(data: any){
+  resetPassword(data: any,token :string){
     console.log(data);
-    return this.http.post('https://localhost:44370/api/Users/ResetPassword', data);
+    let header = {
+      headers:new HttpHeaders({
+        'Content-Type' : 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+    }
+    return this.http.post('https://localhost:44370/api/Users/ResetPassword', data, header);
   }
 }

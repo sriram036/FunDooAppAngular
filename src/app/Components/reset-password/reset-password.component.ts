@@ -18,11 +18,16 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
+  token:string='';
   userPasswordReset = new FormGroup({
     password: new FormControl(''),
     confirmPassword: new FormControl('')
   });
   ngOnInit(): void {
+    this.User.newToken.subscribe(data=>{
+      this.token = data;
+    });
+    console.log(this.token);
   }
 
   goToLogin(){
@@ -30,7 +35,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(){
-    this.User.resetPassword(this.userPasswordReset.value).subscribe((result)=>{
+    this.User.resetPassword(this.userPasswordReset.value,this.token).subscribe((result)=>{
       console.log(result);
     });
   }

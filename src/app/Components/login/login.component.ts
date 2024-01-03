@@ -11,33 +11,30 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 })
 export class LoginComponent implements OnInit {
 
+  submitted = false;
   @Input() childMessage = "";
 
   @Output() messageEvent = new EventEmitter<string>();
-  MessageFromChild: string = "Message from child (Frustration)";
+  MessageFromChild: string = "Message from child";
   constructor(private router: Router, private fb: FormBuilder, private User: UserService, private _snackBar: MatSnackBar) { 
-    this.loginUser = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
   }
 
   message!:string;
   sendMessage():void{
     this.messageEvent.emit(this.MessageFromChild);
   }
-  loginUser = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
-  }
-  );
+  loginUser!: FormGroup
 
   ngOnInit(): void {
-    console.log(this.childMessage);
+    //console.log(this.childMessage);
     this.User.updatedMessage.subscribe(msg => this.message = msg);
-    console.log(this.message);
+    //console.log(this.message);
     this.message = "New Message from Login";
-    console.log(this.message);
+    //console.log(this.message);
+    this.loginUser = this.fb.group({
+      email: ['',[ Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
@@ -54,15 +51,28 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/registeruser']);
   }
 
+  token:string = '';
   onSubmit() {
-    this.User.loginUser(this.loginUser.value).subscribe((result)=>{
-      console.log(result);
-      this.loginUser.reset({});
-      this._snackBar.open('Login Successful!!', 'Close', {
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-        duration: this.durationInSeconds * 1000,
+    this.submitted = true;
+    if(this.loginUser.invalid){
+      return
+    }
+    else{
+      this.User.loginUser(this.loginUser.value).subscribe((result:any) => {
+        //console.log(result.message);
+        //console.log(result.data);
+        this.loginUser.reset();
+        this.submitted = false;
+        this._snackBar.open('Login Successful!!', 'Close', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          duration: this.durationInSeconds * 1000,
+        });
+        this.token = result.data;
+        //console.log(result.data);
+        this.User.changeToken(result.data);
+        this.router.navigate(['/Dashboard']);
       });
-    });
+    }
   }
 }

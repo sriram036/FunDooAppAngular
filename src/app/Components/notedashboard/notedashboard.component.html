@@ -7,7 +7,7 @@
 </head>
 <body>
     <mat-toolbar style="background-color: white;">
-        <button mat-icon-button class="example-icon" (click)="drawer.toggle()" aria-label="Example icon-button with menu icon">
+        <button mat-icon-button class="example-icon" (click)="drawer.toggle();viewSideNav();" aria-label="Example icon-button with menu icon">
             <mat-icon>menu</mat-icon>
         </button>
         <img src="../../../assets/Images/keep_2020q4_48dp.png">
@@ -37,55 +37,50 @@
     <hr>
     <div style="display: flex; justify-content: flex-start; height: 85%;">
         <div>
+            <app-sidebariconbuttons *ngIf="!ic"></app-sidebariconbuttons>
             <mat-drawer-container class="example-container" autosize>
                 <mat-drawer #drawer class="example-sidenav" mode="side">
                     <div style="display: flex; align-items: baseline;">
-                        <button style="background-color: white; border: none;">
-                            <img src="../../../assets/Images/lightbulb_FILL0_wght400_GRAD0_opsz24.png">
+                        <button mat-button (click)="showhideUtility()">
+                            <img src="../../../assets/Images/lightbulb_FILL0_wght400_GRAD0_opsz24.png"><span>Notes</span>
                         </button>
-                        <p>Notes</p><br />
                     </div>
                     <div style="display: flex; align-items: baseline;">
-                        <button style="background-color: white; border: none;">
-                            <img src="../../../assets/Images/notifications_FILL0_wght400_GRAD0_opsz24.png">
+                        <button mat-button>
+                            <img src="../../../assets/Images/notifications_FILL0_wght400_GRAD0_opsz24.png"><span>Reminders</span>
                         </button>
-                        <p>Reminders</p>
                     </div>
                     <div style="display: flex; align-items: baseline;">
-                        <button style="background-color: white; border: none;">
-                            <img src="../../../assets/Images/label_FILL0_wght400_GRAD0_opsz24.png">
+                        <button mat-button>
+                            <img src="../../../assets/Images/label_FILL0_wght400_GRAD0_opsz24.png"><span>Labels</span>
                         </button>
-                        <p>Labels</p>
                     </div>
                     <div style="display: flex; align-items: baseline;">
-                        <button style="background-color: white; border: none;">
-                            <img src="../../../assets/Images/edit_FILL0_wght400_GRAD0_opsz24.png">
+                        <button mat-button>
+                            <img src="../../../assets/Images/edit_FILL0_wght400_GRAD0_opsz24.png"><span>Edit lables</span>
                         </button>
-                        <p>Edit lables</p>
                     </div>
                     <div style="display: flex; align-items: baseline;">
-                        <button style="background-color: white; border: none;">
-                            <img src="../../../assets/Images/archive_FILL0_wght400_GRAD0_opsz24.png">
+                        <button mat-button type="button" (click)="showArchive()">
+                            <img src="../../../assets/Images/archive_FILL0_wght400_GRAD0_opsz24.png"><span>Archive</span>
                         </button>
-                        <p>Archive</p>
                     </div>
                     <div style="display: flex; align-items: baseline;">
-                        <button style="background-color: white; border: none;">
-                            <img src="../../../assets/Images/delete_FILL0_wght400_GRAD0_opsz24.png">
+                        <button mat-button type="button" (click)="showTrash()">
+                            <img src="../../../assets/Images/delete_FILL0_wght400_GRAD0_opsz24.png"><span>Trash</span>
                         </button>
-                        <p>Trash</p>
                     </div>
                 </mat-drawer>
             </mat-drawer-container>
         </div>
-        <div style="display: flex;justify-content: center;margin-left: 25%;padding: 25px;">
-            <div>
+        <div style="display: flex; flex-direction: column;width: 70% ; justify-content: center; margin-left: 200px;padding: 25px;">
+            <form *ngIf="visible" (ngSubmit)="saveNote()">
                 <mat-accordion>
-                    <mat-expansion-panel hideToggle style="width: 150%;box-shadow: 1px 1px 7px 6px rgba(0.1, 0, 0, 0.1);">
+                    <mat-expansion-panel hideToggle style="max-width: 80%;box-shadow: 1px 1px 7px 6px rgba(0.1, 0, 0, 0.1);">
                         <mat-expansion-panel-header >
                             <mat-panel-title>
                                 <mat-form-field floatLabel="never" style="width: 100%;">
-                                    <input matInput placeholder="Title">
+                                    <input [(ngModel)]="title" name="title" matInput placeholder="Title">
                                 </mat-form-field>
                             </mat-panel-title>
                             <mat-panel-description style="display: flex;justify-content: flex-end">
@@ -97,7 +92,7 @@
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <mat-form-field floatLabel="never" style="width: 100%;">
-                            <input matInput placeholder="Take a note..">
+                            <input [(ngModel)]="description" name="description" matInput placeholder="Take a note..">
                         </mat-form-field>
                         <div style="display: flex; justify-content: space-between;">
                             <button mat-icon-button><img src="../../../assets/Images/add_alert_FILL0_wght400_GRAD0_opsz24.png"></button>
@@ -106,16 +101,22 @@
                             <button mat-icon-button><img src="../../../assets/Images/image_FILL0_wght400_GRAD0_opsz24.png"></button>
                             <button mat-icon-button><img src="../../../assets/Images/archive_FILL0_wght400_GRAD0_opsz24.png"></button>
                             <button mat-icon-button><img src="../../../assets/Images/more_vert_FILL0_wght400_GRAD0_opsz24.png"></button>
-                            <button mat-icon-button><img src="../../../assets/Images/undo_FILL0_wght400_GRAD0_opsz24.png"></button>
-                            <button mat-icon-button><img src="../../../assets/Images/redo_FILL0_wght400_GRAD0_opsz24.png"></button>
-                            <button mat-button>Close</button>
+                            <button mat-button type="submit">Close</button>
                             <!-- <div style="display: flex;justify-content: flex-end;">
                                 <button>Basic</button>
                             </div> -->
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
+            </form>
+            <br />
+            <div class="cardContainer">
+                <div>
+                    <app-notes-buttons *ngIf="visible" [newAddedNote]="NotesList" (dataEvent)="receiveData($event)"></app-notes-buttons>
+                </div>
             </div>
+            <app-archive *ngIf="archive" [newAddedNote]="archiveList" (dataEvent)="receiveData($event)"></app-archive>
+            <app-trash *ngIf="trash" [newAddedNote]="trashList" (dataEvent)="receiveData($event)"></app-trash>
         </div>
     </div>
 </body>

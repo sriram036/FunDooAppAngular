@@ -1,0 +1,20 @@
+<form (ngSubmit)="editData()">
+    <div style="display: flex;flex-direction: column;">
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input [(ngModel)]="title" name="title" matInput placeholder="First Name">
+        </mat-form-field><mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input [(ngModel)]="description" name="description" matInput placeholder="Description">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-icon-button><img src="../../../assets/Images/add_alert_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button mat-icon-button><img src="../../../assets/Images/person_add_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button mat-icon-button><img src="../../../assets/Images/palette_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button mat-icon-button><img src="../../../assets/Images/image_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button mat-icon-button><img src="../../../assets/Images/archive_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button mat-icon-button><img src="../../../assets/Images/more_vert_FILL0_wght400_GRAD0_opsz24.png"></button>
+        <button mat-button type="submit">Close</button>
+    </div>
+</form>

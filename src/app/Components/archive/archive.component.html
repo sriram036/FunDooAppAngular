@@ -1,0 +1,24 @@
+<div style="display: flex;justify-content: flex-start;flex-wrap: wrap;">
+    <div class="example-card" *ngFor="let note of newAddedNote">
+        <div style="display: flex;justify-content: space-between;">
+            <h2>{{note.title}}</h2>
+            <button mat-icon-button><img src="../../../assets/Images/push_pin_FILL0_wght400_GRAD0_opsz24.png"></button>
+        </div>
+        <p>{{note.description}}<br>{{note.colour}}</p>
+        <footer>
+            <button mat-icon-button><img src="../../../assets/Images/add_alert_FILL0_wght400_GRAD0_opsz24.png"></button>
+            <button mat-icon-button><img src="../../../assets/Images/person_add_FILL0_wght400_GRAD0_opsz24.png"></button>
+            <button mat-icon-button><img src="../../../assets/Images/palette_FILL0_wght400_GRAD0_opsz24.png"></button>
+            <button mat-icon-button><img src="../../../assets/Images/image_FILL0_wght400_GRAD0_opsz24.png"></button>
+            <button (click)="archiveOrDelete(note.notesId, 1)" mat-icon-button><img
+                    src="../../../assets/Images/unarchive_FILL0_wght400_GRAD0_opsz24.png"></button>
+            <button mat-icon-button [matMenuTriggerFor]="menu"><img
+                    src="../../../assets/Images/more_vert_FILL0_wght400_GRAD0_opsz24.png"></button>
+            <mat-menu #menu="matMenu">
+                <button (click)="archiveOrDelete(note.notesId, 2)" mat-menu-item>Delete</button>
+                <button mat-menu-item>AddLabel</button>
+            </mat-menu>
+        </footer>
+    </div>
+</div>
+

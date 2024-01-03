@@ -21,6 +21,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
+import { NotesButtonsComponent } from './Components/notes-buttons/notes-buttons.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { SidebariconbuttonsComponent } from './Components/sidebariconbuttons/sidebariconbuttons.component';
+import { ArchiveComponent } from './Components/archive/archive.component';
+import { TrashComponent } from './Components/trash/trash.component';
+import { EditComponent } from './Components/edit/edit.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -30,7 +38,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ForgotpasswordComponent,
     ResetPasswordComponent,
     RegisteruserComponent,
-    NotedashboardComponent
+    NotedashboardComponent,
+    NotesButtonsComponent,
+    SidebariconbuttonsComponent,
+    ArchiveComponent,
+    TrashComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +61,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatSnackBarModule,
     MatToolbarModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule,
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

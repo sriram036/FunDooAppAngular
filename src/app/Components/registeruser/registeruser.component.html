@@ -1,7 +1,3 @@
-<app-login [childMessage]="parentMessage" (messageEvent)="receiveMessage($event)"></app-login>
-{{message}}
-<button type="button" (click)="updateMessage()">Update</button>
-{{messageService}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,36 +15,52 @@
                     <mat-form-field appearance="outline">
                         <mat-label>First Name</mat-label>
                         <input required matInput formControlName="firstName" placeholder="First Name">
-                        <mat-error>First Name is <strong>Required</strong></mat-error>
+                        <mat-error *ngIf="submitted && addUser.controls['firstName'].errors">
+                            <mat-error *ngIf="addUser.controls['firstName'].errors['required']">First Name is <strong>Required</strong></mat-error>
+                            <mat-error *ngIf="addUser.controls['firstName'].errors['minlength']">Min Length is <strong>5</strong></mat-error>
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Last Name</mat-label>
                         <input required matInput formControlName="lastName" placeholder="Last Name">
-                        <mat-error>Last Name is <strong>Required</strong></mat-error>
+                        <mat-error *ngIf="submitted && addUser.controls['lastName'].errors">
+                            <mat-error *ngIf="addUser.controls['lastName'].errors['required']">First Name is
+                                <strong>Required</strong></mat-error>
+                            <mat-error *ngIf="addUser.controls['lastName'].errors['minlength']">Min Length is <strong>5</strong></mat-error>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div>
                     <mat-form-field style="width: 100%;" appearance="outline">
                         <mat-label>Email</mat-label>
                         <input required matInput formControlName="email" placeholder="Email">
-                        <mat-error>Email is <strong>Required</strong></mat-error>
+                        <mat-error *ngIf="submitted && addUser.controls['email'].errors">
+                            <mat-error *ngIf="addUser.controls['email'].errors['required']">Email is <strong>Required</strong></mat-error>
+                            <mat-error *ngIf="addUser.controls['email'].errors['email']">Email Should be <strong>Valid</strong></mat-error>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <mat-form-field appearance="outline">
                         <mat-label>Password</mat-label>
                         <input type="password" required matInput formControlName="password" placeholder="Password">
-                        <mat-error>Password is <strong>Required</strong></mat-error>
+                        <mat-error *ngIf="submitted && addUser.controls['password'].errors">
+                            <mat-error *ngIf="addUser.controls['password'].errors['required']">Password is <strong>Required</strong></mat-error>
+                            <mat-error *ngIf="addUser.controls['password'].errors['minlength']">Min Length is <strong>8</strong></mat-error>
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Confirm</mat-label>
-                        <input type="password" required matInput placeholder="Confirm">
-                        <mat-error>Confirm Password is <strong>Required</strong></mat-error>
+                        <input type="password" required matInput formControlName="confirmPassword" placeholder="Confirm">
+                        <mat-error *ngIf="submitted && addUser.controls['confirmPassword'].errors">
+                            <mat-error *ngIf="addUser.controls['confirmPassword'].errors['required']">Confirm Password is <strong>Required</strong></mat-error>
+                            <mat-error *ngIf="addUser.controls['confirmPassword'].errors['mustMatch']">Password Must <strong>Match</strong></mat-error>
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <button style="color: blue;" type="button" (click)="goToLogin()" mat-button>Sign in instead</button>
-                    <button mat-raised-button [disabled]="addUser.invalid" type="submit" color="primary">Register</button>
+                    <button mat-raised-button type="submit" color="primary">Register</button>
                 </div>
             </div>
             <div class="form-right">

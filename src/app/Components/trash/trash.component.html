@@ -1,0 +1,13 @@
+<div style="display: flex;justify-content: flex-start;flex-wrap: wrap;">
+    <div class="example-card" *ngFor="let note of newAddedNote">
+        <div style="display: flex;justify-content: space-between;">
+            <h2>{{note.title}}</h2>
+            <button mat-icon-button><img src="../../../assets/Images/push_pin_FILL0_wght400_GRAD0_opsz24.png"></button>
+        </div>
+        <p>{{note.description}}<br>{{note.colour}}</p>
+        <footer>
+            <button mat-icon-button (click)="deleteForever(note.notesId)"><img src="../../../assets/Images/delete_forever_FILL0_wght400_GRAD0_opsz24.png"></button>
+            <button mat-icon-button (click)="archiveOrDelete(note.notesId, 2)"><img src="../../../assets/Images/restore_from_trash_FILL0_wght400_GRAD0_opsz24.png"></button>
+        </footer>
+    </div>
+</div>

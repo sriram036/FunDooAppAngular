@@ -1,5 +1,3 @@
-{{ childMessage }}
-<button (click)="sendMessage()">Send</button>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,18 +18,23 @@
         <div>
           <p style="text-align: center;">Use your Fundo Account</p>
         </div>
-        <div style="display: flex; justify-content: center;">
+        <div style="display: flex;flex-direction: column; justify-content: center;">
           <mat-form-field appearance="outline">
             <mat-label>Email or Phone</mat-label>
-            <input matInput required formControlName="email" placeholder="Email or Phone">
-            <mat-error>Email is <strong>Required</strong></mat-error>
+            <input matInput formControlName="email" placeholder="Email or Phone">
+            <mat-error *ngIf=" submitted && loginUser.controls['email'].errors">
+              <mat-error *ngIf="loginUser.controls['email'].errors['required']">Email is <strong>Required</strong></mat-error>
+              <mat-error *ngIf="loginUser.controls['email'].errors['email']">Email Should be <strong>Valid</strong></mat-error>
+            </mat-error>
           </mat-form-field>
         </div>
         <div style="text-align: center;">
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input type="password" matInput required formControlName="password" placeholder="Password">
-            <mat-error>Password is <strong>Required</strong></mat-error>
+            <input type="password" matInput formControlName="password" placeholder="Password">
+            <mat-error *ngIf=" submitted && loginUser.controls['password'].errors">
+              <mat-error *ngIf="loginUser.controls['password'].errors['required']">Password is <strong>Required</strong></mat-error>
+            </mat-error>
           </mat-form-field>
         </div>
         <p><button style="color: blue;" (click)="goToForgotPassword()" type="button" mat-button>Forgot Password</button></p>
@@ -40,7 +43,7 @@
             <button style="color: blue;" type="button" (click)="goToRegister()" mat-button>Create Account</button>
           </div>
           <div>
-            <button type="submit" [disabled]="loginUser.invalid" mat-raised-button color="primary">Login</button>
+            <button type="submit" mat-raised-button color="primary">Login</button>
           </div>
         </div>
       </form>

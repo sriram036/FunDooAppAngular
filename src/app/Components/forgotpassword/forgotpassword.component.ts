@@ -16,6 +16,7 @@ export class ForgotpasswordComponent implements OnInit {
     });
   }
 
+  token:string='';
   forgotPasswordUser = new FormGroup({
     email: new FormControl('')
   });
@@ -28,8 +29,11 @@ export class ForgotpasswordComponent implements OnInit {
   }
 
   onSubmit(){
-    this.User.forgotPassword(this.forgotPasswordUser.controls['email'].value).subscribe((result)=>{
-      console.log(result);
+    this.User.forgotPassword(this.forgotPasswordUser.controls['email'].value).subscribe((result:any)=>{
+      console.log(result.data);
+      this.token = result.data;
+      this.User.changeToken(result.data);
+      this.router.navigate(['/resetpassword']);
     });
   }
 }

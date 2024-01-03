@@ -10,39 +10,57 @@ import {  MatSnackBar,  MatSnackBarHorizontalPosition,  MatSnackBarVerticalPosit
 })
 export class RegisteruserComponent implements OnInit {
 
-  parentMessage = "Parent Message (Advice)";
+  parentMessage = "Parent Message";
+
+  submitted = false;
 
   message!:string;
 
   messageService!: string;
 
+  addUser!: FormGroup
   constructor(private router: Router, private fb: FormBuilder, private User: UserService, private _snackBar: MatSnackBar) { 
-    this.addUser = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
     this.User.updatedMessage.subscribe(msg => this.messageService = msg);
   }
 
   updateMessage(){
     this.User.setMessage('Message Updated from Register.');
   }
-  addUser = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl('')
+  
+  MustMatch(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
+        // return if another validator has already found an error on the matchingControl
+        return;
+      }
+
+      // set error on matchingControl if validation fails
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ mustMatch: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    }
   }
-  );
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds = 5;
 
   ngOnInit(): void {
+    this.addUser = this.fb.group({
+      firstName: ['', [Validators.required, Validators.minLength(5)]],
+      lastName: ['', [Validators.required, Validators.minLength(5)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', Validators.required]
+    }, {
+      validator: this.MustMatch('password', 'confirmPassword')
+    });
+
   }
 
   receiveMessage($event:any){
@@ -54,14 +72,21 @@ export class RegisteruserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.User.registerUser(this.addUser.value).subscribe((result)=>{
-      console.log(result);
-      this.addUser.reset({});
-      this._snackBar.open('User Registered!!', 'Close', {
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-        duration: this.durationInSeconds * 1000,
+    this.submitted = true;
+    if(this.addUser.invalid){
+      return
+    }
+    else{
+      this.User.registerUser(this.addUser.value).subscribe((result) => {
+        console.log(result);
+        this.addUser.reset();
+        this.submitted = false;
+        this._snackBar.open('User Registered!!', 'Close', {
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+          duration: this.durationInSeconds * 1000,
+        });
       });
-    });
+    }
   }
 }
