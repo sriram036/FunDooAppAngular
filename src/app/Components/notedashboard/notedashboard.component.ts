@@ -60,6 +60,13 @@ export class NotedashboardComponent implements OnInit {
     this.archive = false;
   }
 
+  closeAccount(){
+    localStorage.removeItem('FunDooToken');
+    console.log("Thank you for using FunDoo!!Bye "+this.id+" !!");
+    this.router.navigate(['/Login']);
+  }
+
+  id:number = 0;
   title:string='';
   description:string='';
   NotesList:INotes[]=[];
@@ -76,6 +83,7 @@ export class NotedashboardComponent implements OnInit {
     });
     this.note.getNotes(this.token).subscribe(notes =>{
       this.allList = notes;
+      this.id = this.allList[0].userId;
       console.log(this.allList);
       this.NotesList = this.allList.filter((noteObj: INotes) => noteObj.isArchive == false && noteObj.isTrash == false);
       console.log(this.NotesList);

@@ -10,18 +10,19 @@ import { SidebariconbuttonsComponent } from './Components/sidebariconbuttons/sid
 import { ArchiveComponent } from './Components/archive/archive.component';
 import { TrashComponent } from './Components/trash/trash.component';
 import { EditComponent } from './Components/edit/edit.component';
+import { AuthguardGuard } from './Auth/authguard.guard';
 
 const routes: Routes = [
   { path:'Login', component: LoginComponent },
   { path:'forgotpassword', component: ForgotpasswordComponent },
   { path:'resetpassword', component: ResetPasswordComponent },
   { path:'registeruser', component: RegisteruserComponent },
-  { path: 'Dashboard', component: NotedashboardComponent },
-  { path:'notesButtons', component: NotesButtonsComponent },
-  { path:'sidebuttons', component: SidebariconbuttonsComponent },
-  { path:'archive', component: ArchiveComponent },
-  { path:'trash', component: TrashComponent},
-  { path:'edit', component:EditComponent }
+  { path: 'Dashboard', component: NotedashboardComponent, canActivate: [AuthguardGuard]},
+  { path: 'notesButtons', component: NotesButtonsComponent, canActivate: [AuthguardGuard] },
+  { path: 'sidebuttons', component: SidebariconbuttonsComponent, canActivate: [AuthguardGuard] },
+  { path: 'archive', component: ArchiveComponent, canActivate: [AuthguardGuard] },
+  { path: 'trash', component: TrashComponent, canActivate: [AuthguardGuard] },
+  { path: 'edit', component: EditComponent, canActivate: [AuthguardGuard] }
 ];
 
 @NgModule({

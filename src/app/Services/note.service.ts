@@ -21,13 +21,17 @@ interface INotes {
 })
 export class NoteService {
 
+  tokenLocal: string = '';
+  
   constructor(private http : HttpClient) { }
 
   getNotes(token : string){
+    this.tokenLocal = localStorage.getItem('FunDooToken') || '';
+    console.log(this.tokenLocal);
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     return this.http.get<any>('https://localhost:44370/api/Notes/GetNotesById',header);
@@ -37,7 +41,7 @@ export class NoteService {
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     return this.http.post('https://localhost:44370/api/Notes/CreateNote',data,header);
@@ -47,7 +51,7 @@ export class NoteService {
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     return this.http.put('https://localhost:44370/api/Notes/PinNote?notesid=' + data , null, header);
@@ -57,7 +61,7 @@ export class NoteService {
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     return this.http.put('https://localhost:44370/api/Notes/ArchiveNote?notesid='+data,null,header);
@@ -67,7 +71,7 @@ export class NoteService {
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     console.log(note);
@@ -78,7 +82,7 @@ export class NoteService {
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     console.log(color);
@@ -91,7 +95,7 @@ export class NoteService {
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     console.log(data);
@@ -102,7 +106,7 @@ export class NoteService {
     let header = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${this.tokenLocal}`
       })
     }
     return this.http.put('https://localhost:44370/api/Notes/TrashNote?notesid=' + data, null, header);

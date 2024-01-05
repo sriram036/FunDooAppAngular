@@ -33,6 +33,13 @@
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
             <img src="../../../assets/Images/settings_FILL0_wght400_GRAD0_opsz24.png">
         </button>
+        <button mat-icon-button class="example-icon" [matMenuTriggerFor]="account" aria-label="Example icon-button with share icon">
+            <img src="../../../assets/Images/manage_accounts_FILL0_wght400_GRAD0_opsz24.png">
+        </button>
+        <mat-menu #account="matMenu">
+            <label style="display: flex;justify-content: center;"><strong style="font-size: larger;">Hi, {{id}}!</strong></label>
+            <button mat-menu-item (click)="closeAccount()"><img src="../../../assets/Images/logout_FILL0_wght400_GRAD0_opsz24.png"><span>Logout</span></button>
+        </mat-menu>
     </mat-toolbar>
     <hr>
     <div style="display: flex; justify-content: flex-start; height: 85%;">

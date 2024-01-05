@@ -10,10 +10,11 @@
 .form{
     border: 3px;
     width: 25%;
-    height: 55%;
+    //height: 55%;
     border-radius: 5px;
     box-shadow: 1px 1px 7px 6px rgba(0.1, 0, 0, 0.1);
     padding: 30px;
+    min-height: 55%;
 }
 
 mat-form-field {

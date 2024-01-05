@@ -70,6 +70,8 @@ export class LoginComponent implements OnInit {
         });
         this.token = result.data;
         //console.log(result.data);
+        localStorage.setItem('FunDooToken',this.token);
+        console.log(localStorage.getItem('FunDooToken'));
         this.User.changeToken(result.data);
         this.router.navigate(['/Dashboard']);
       });

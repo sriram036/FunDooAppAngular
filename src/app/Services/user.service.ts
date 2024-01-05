@@ -18,6 +18,15 @@ export class UserService {
   }
   constructor(private http : HttpClient) { }
 
+  isLoggedIn():boolean{
+    let tokenLocal:string|null = localStorage.getItem('FunDooToken');
+    if(tokenLocal != null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
   setMessage(message: string) {
     console.log(this.message.value);
     this.message.next(message);
